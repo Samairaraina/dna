@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --glass-bg: rgba(255, 255, 255, 0.15);
+    --glass-border: rgba(255, 255, 255, 0.25);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  }
+
+  .dark {
+    --glass-bg: rgba(17, 24, 39, 0.6);
+    --glass-border: rgba(75, 85, 99, 0.4);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #22d3ee transparent;
+  }
+
+  *::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: #22d3ee;
+    border-radius: 3px;
+  }
+}
+
+@layer components {
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+  }
+
+  .glass-card {
+    @apply glass rounded-2xl transition-all duration-300;
+  }
+
+  .glass-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(34, 211, 238, 0.15);
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-crispr-400 via-aqua-400 to-yellow-400;
+  }
+
+  .gradient-border {
+    border: double 1px transparent;
+    background-image: linear-gradient(var(--glass-bg), var(--glass-bg)),
+      linear-gradient(135deg, #4ade80, #22d3ee, #facc15);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+  }
+
+  .section-padding {
+    @apply px-4 sm:px-6 lg:px-8 py-16 md:py-24;
+  }
+
+  .container-custom {
+    @apply max-w-7xl mx-auto;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-white dark:bg-gray-950 text-gray-800 dark:text-gray-200 transition-colors duration-300;
+  margin: 0;
+}
+
+#root {
+  overflow-x: hidden;
+}
+
+::selection {
+  @apply bg-cyan-400 text-gray-900;
+}
