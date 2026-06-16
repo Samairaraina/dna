@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Logo from "./Logo";
 import PrivacyModal from "./PrivacyModal";
 
@@ -45,9 +46,9 @@ export default function Footer() {
             <div>
               <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">Technologies</h4>
               <ul className="space-y-3">
-                {["High-Fidelity Cas9", "Base Editing", "Prime Editing", "AI Guide Design", "Delivery Systems", "Epigenetic Editing"].map((item) => (
+                  {["High-Fidelity Cas9", "Base Editing", "Prime Editing", "AI Guide Design", "Delivery Systems", "Epigenetic Editing"].map((item) => (
                   <li key={item}>
-                    <a href="#technologies" className="text-sm text-gray-400 hover:text-aqua-400 transition-colors">{item}</a>
+                    <Link to="/" className="text-sm text-gray-400 hover:text-aqua-400 transition-colors">{item}</Link>
                   </li>
                 ))}
               </ul>
@@ -56,9 +57,9 @@ export default function Footer() {
             <div>
               <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">Applications</h4>
               <ul className="space-y-3">
-                {["Healthcare", "Cancer Research", "Genetic Diseases", "Agriculture", "Biotechnology", "Drug Discovery"].map((item) => (
+                  {["Healthcare", "Cancer Research", "Genetic Diseases", "Agriculture", "Biotechnology", "Drug Discovery"].map((item) => (
                   <li key={item}>
-                    <a href="#applications" className="text-sm text-gray-400 hover:text-aqua-400 transition-colors">{item}</a>
+                    <Link to="/" className="text-sm text-gray-400 hover:text-aqua-400 transition-colors">{item}</Link>
                   </li>
                 ))}
               </ul>
@@ -67,11 +68,11 @@ export default function Footer() {
             <div>
               <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">Company</h4>
               <ul className="space-y-3">
-                <li><a href="#about" className="text-sm text-gray-400 hover:text-aqua-400 transition-colors">About Us</a></li>
-                <li><a href="#publications" className="text-sm text-gray-400 hover:text-aqua-400 transition-colors">Research</a></li>
-                <li><a href="#publications" className="text-sm text-gray-400 hover:text-aqua-400 transition-colors">Publications</a></li>
+                <li><Link to="/" className="text-sm text-gray-400 hover:text-aqua-400 transition-colors">About Us</Link></li>
+                <li><Link to="/research" className="text-sm text-gray-400 hover:text-aqua-400 transition-colors">Research</Link></li>
+                <li><Link to="/publications" className="text-sm text-gray-400 hover:text-aqua-400 transition-colors">Publications</Link></li>
                 <li><a href="mailto:careers@crispr-labs.com" className="text-sm text-gray-400 hover:text-aqua-400 transition-colors">Careers</a></li>
-                <li><a href="#contact" className="text-sm text-gray-400 hover:text-aqua-400 transition-colors">Contact</a></li>
+                <li><Link to="/contact" className="text-sm text-gray-400 hover:text-aqua-400 transition-colors">Contact</Link></li>
                 <li>
                   <button onClick={() => setPrivacyOpen(true)}
                     className="text-sm text-gray-400 hover:text-aqua-400 transition-colors text-left bg-none border-none p-0 cursor-pointer">

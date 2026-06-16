@@ -1,64 +1,54 @@
 import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import Logo from "./Logo";
 
 const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Technologies", href: "#technologies" },
-  { label: "Applications", href: "#applications" },
-  { label: "Dashboard", href: "#dashboard" },
-  { label: "Publications", href: "#publications" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", path: "/" },
+  { label: "Research", path: "/research" },
+  { label: "Dashboard", path: "/dashboard" },
+  { label: "Publications", path: "/publications" },
+  { label: "Team", path: "/team" },
+  { label: "Contact", path: "/contact" },
 ];
 
 export default function Navbar({ dark, toggleTheme }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
+  const { pathname } = useLocation();
 
   useEffect(() => {
-    const onScroll = () => {
-      const y = window.scrollY;
-      setScrolled(y > 50);
-
-      const sections = navLinks.map((l) => l.href.slice(1));
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sections[i]);
-        if (el && el.offsetTop <= y + 120) {
-          setActiveSection(sections[i]);
-          break;
-        }
-      }
-    };
+    const onScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [pathname]);
+
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "glass shadow-lg"
-          : "bg-white/0 dark:bg-gray-950/0"
+        scrolled ? "glass shadow-lg" : "bg-white/0 dark:bg-gray-950/0"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
-          <a href="#home" className="flex items-center gap-2.5 group">
+          <Link to="/" className="flex items-center gap-2.5 group">
             <Logo className="w-9 h-9" />
             <span className="text-lg font-bold text-gray-900 dark:text-white">
               CRISPR<span className="text-aqua-500">Labs</span>
             </span>
-          </a>
+          </Link>
 
           <div className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) => {
-              const isActive = activeSection === link.href.slice(1);
+              const isActive = link.path === "/" ? pathname === "/" : pathname.startsWith(link.path);
               return (
-                <a
-                  key={link.href}
-                  href={link.href}
+                <Link
+                  key={link.path}
+                  to={link.path}
                   className={`px-3 py-2 text-sm font-medium rounded-lg transition-all ${
                     isActive
                       ? "text-crispr-600 dark:text-crispr-400 bg-crispr-50 dark:bg-crispr-900/20"
@@ -66,7 +56,7 @@ export default function Navbar({ dark, toggleTheme }) {
                   }`}
                 >
                   {link.label}
-                </a>
+                </Link>
               );
             })}
             <button
@@ -129,12 +119,11 @@ export default function Navbar({ dark, toggleTheme }) {
           >
             <div className="px-4 py-4 space-y-1">
               {navLinks.map((link) => {
-                const isActive = activeSection === link.href.slice(1);
+                const isActive = link.path === "/" ? pathname === "/" : pathname.startsWith(link.path);
                 return (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setMobileOpen(false)}
+                  <Link
+                    key={link.path}
+                    to={link.path}
                     className={`block px-4 py-3 text-sm font-medium rounded-xl transition-all ${
                       isActive
                         ? "text-crispr-600 dark:text-crispr-400 bg-crispr-50 dark:bg-crispr-900/20"
@@ -142,7 +131,7 @@ export default function Navbar({ dark, toggleTheme }) {
                     }`}
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 );
               })}
             </div>
