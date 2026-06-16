@@ -82,38 +82,38 @@ export default function EthicalConsiderations() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <span className="inline-block px-4 py-2 rounded-full glass text-sm font-medium text-yellow-600 dark:text-yellow-400 mb-4">
-            Responsible Innovation
-          </span>
-          <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            Ethical <span className="gradient-text">Considerations</span>
-          </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            As we advance CRISPR technology, we remain committed to responsible innovation, ethical rigor, and inclusive dialogue.
-          </p>
-        </motion.div>
+          className="text-center mb-8"
+          >
+            <span className="inline-block px-3 py-1.5 rounded-full glass text-xs font-medium text-yellow-600 dark:text-yellow-400 mb-3">
+              Responsible Innovation
+            </span>
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-3">
+              Ethical <span className="gradient-text">Considerations</span>
+            </h2>
+            <p className="text-base text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+              As we advance CRISPR technology, we remain committed to responsible innovation, ethical rigor, and inclusive dialogue.
+            </p>
+          </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {topics.map((topic, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="glass-card p-6"
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-crispr-400 to-aqua-400 p-3 text-white flex-shrink-0">
-                  {topic.icon}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {topics.map((topic, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                className="glass-card p-4"
+              >
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-crispr-400 to-aqua-400 p-2.5 text-white flex-shrink-0">
+                    {topic.icon}
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-semibold text-gray-900 dark:text-white">{topic.title}</h3>
+                    <span className="text-[10px] text-gray-400">{topic.stance}</span>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900 dark:text-white">{topic.title}</h3>
-                  <span className="text-xs text-gray-400">{topic.stance}</span>
-                </div>
-              </div>
-              <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">{topic.description}</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">{topic.description}</p>
             </motion.div>
           ))}
         </div>
@@ -122,10 +122,10 @@ export default function EthicalConsiderations() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="mt-12 glass-card p-8 md:p-12 text-center max-w-4xl mx-auto"
-        >
-          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Our Ethical Framework</h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          className="mt-8 glass-card p-6 md:p-8 text-center max-w-4xl mx-auto"
+          >
+            <h3 className="text-base font-bold text-gray-900 dark:text-white mb-3">Our Ethical Framework</h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
               { principle: "Transparency", desc: "Open sharing of methods and results" },
               { principle: "Responsibility", desc: "Careful risk-benefit assessment" },
@@ -133,8 +133,8 @@ export default function EthicalConsiderations() {
               { principle: "Integrity", desc: "Highest scientific and ethical standards" },
             ].map((item, i) => (
               <div key={i}>
-                <div className="text-lg font-bold gradient-text mb-1">{item.principle}</div>
-                <div className="text-xs text-gray-400">{item.desc}</div>
+                  <div className="text-sm font-bold gradient-text mb-1">{item.principle}</div>
+                  <div className="text-[10px] text-gray-400">{item.desc}</div>
               </div>
             ))}
           </div>

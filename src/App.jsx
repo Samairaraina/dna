@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { useTheme } from "./hooks/useTheme";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
+import DnaSimulator from "./components/DnaSimulator";
 import AboutCRISPR from "./components/AboutCRISPR";
 import WhyOptimization from "./components/WhyOptimization";
 import OptimizationTech from "./components/OptimizationTech";
@@ -10,6 +11,8 @@ import Applications from "./components/Applications";
 import ResearchDashboard from "./components/ResearchDashboard";
 import FutureTimeline from "./components/FutureTimeline";
 import EthicalConsiderations from "./components/EthicalConsiderations";
+import ResearchGrid from "./components/ResearchGrid";
+import ResearchTeam from "./components/ResearchTeam";
 import Publications from "./components/Publications";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
@@ -49,6 +52,7 @@ function App() {
       <div className="min-h-screen bg-white dark:bg-gray-950 transition-colors duration-300">
         <Navbar dark={dark} toggleTheme={toggle} />
         <Hero />
+        <DnaSimulator />
         <AboutCRISPR />
         <WhyOptimization />
         <OptimizationTech />
@@ -56,6 +60,8 @@ function App() {
         <ResearchDashboard />
         <FutureTimeline />
         <EthicalConsiderations />
+        <ResearchGrid />
+        <ResearchTeam />
         <Publications />
         <Contact />
         <Footer />

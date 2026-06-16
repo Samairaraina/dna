@@ -125,15 +125,15 @@ export default function Publications() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
-          <span className="inline-block px-4 py-2 rounded-full glass text-sm font-medium text-purple-600 dark:text-purple-400 mb-4">
-            Research Library
-          </span>
-          <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            Research <span className="gradient-text">Publications</span>
-          </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          className="text-center mb-8"
+          >
+            <span className="inline-block px-3 py-1.5 rounded-full glass text-xs font-medium text-purple-600 dark:text-purple-400 mb-3">
+              Research Library
+            </span>
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-3">
+              Research <span className="gradient-text">Publications</span>
+            </h2>
+            <p className="text-base text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             Explore our curated collection of landmark CRISPR optimization publications.
           </p>
         </motion.div>
@@ -145,7 +145,7 @@ export default function Publications() {
             </svg>
             <input type="text" placeholder="Search publications..." value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 rounded-2xl glass text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-aqua-400/50" />
+              className="w-full pl-12 pr-4 py-3 rounded-2xl glass text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400/40" />
           </div>
         </div>
 

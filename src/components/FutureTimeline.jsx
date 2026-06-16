@@ -82,23 +82,23 @@ export default function FutureTimeline() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <span className="inline-block px-4 py-2 rounded-full glass text-sm font-medium text-crispr-600 dark:text-crispr-400 mb-4">
-            What's Next
-          </span>
-          <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            The Future of <span className="gradient-text">Gene Editing</span>
-          </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Explore our roadmap for the next decade of CRISPR innovation and its transformative potential.
-          </p>
+          className="text-center mb-8"
+          >
+            <span className="inline-block px-3 py-1.5 rounded-full glass text-xs font-medium text-crispr-600 dark:text-crispr-400 mb-3">
+              What's Next
+            </span>
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-3">
+              The Future of <span className="gradient-text">Gene Editing</span>
+            </h2>
+            <p className="text-base text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+              Explore our roadmap for the next decade of CRISPR innovation and its transformative potential.
+            </p>
         </motion.div>
 
         <div className="relative">
           <div className="absolute left-1/2 -translate-x-px top-0 bottom-0 w-0.5 bg-gradient-to-b from-crispr-400 via-aqua-400 to-yellow-400 hidden md:block" />
 
-          <div className="space-y-12 md:space-y-0">
+          <div className="space-y-8 md:space-y-0">
             {timeline.map((item, i) => (
               <motion.div
                 key={i}
@@ -107,35 +107,35 @@ export default function FutureTimeline() {
                 transition={{ duration: 0.6, delay: i * 0.15 }}
                 className={`relative md:flex items-center ${
                   i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                } md:pb-16`}
+                } md:pb-10`}
               >
-                <div className={`hidden md:block w-1/2 ${i % 2 === 0 ? "pr-12 text-right" : "pl-12 text-left"}`}>
-                  <div className="glass-card p-6 inline-block max-w-md">
-                    <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${item.color} p-3 text-white mb-4 ${i % 2 === 0 ? "ml-auto" : ""}`}>
+                <div className={`hidden md:block w-1/2 ${i % 2 === 0 ? "pr-10 text-right" : "pl-10 text-left"}`}>
+                  <div className="glass-card p-4 inline-block max-w-md">
+                    <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${item.color} p-2.5 text-white mb-3 ${i % 2 === 0 ? "ml-auto" : ""}`}>
                       {item.icon}
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{item.title}</h3>
-                    <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">{item.description}</p>
+                    <h3 className="text-base font-bold text-gray-900 dark:text-white mb-1">{item.title}</h3>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">{item.description}</p>
                   </div>
                 </div>
 
-                <div className="hidden md:flex items-center justify-center w-12 flex-shrink-0">
-                  <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${item.color} flex items-center justify-center text-white font-bold text-sm shadow-lg z-10`}>
+                <div className="hidden md:flex items-center justify-center w-10 flex-shrink-0">
+                  <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${item.color} flex items-center justify-center text-white font-bold text-xs shadow-lg z-10`}>
                     {item.year}
                   </div>
                 </div>
 
-                <div className="md:hidden glass-card p-6 ml-0">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${item.color} p-2 text-white`}>
+                <div className="md:hidden glass-card p-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${item.color} p-1.5 text-white`}>
                       {item.icon}
                     </div>
-                    <span className={`px-3 py-1 rounded-full text-xs font-bold text-white bg-gradient-to-r ${item.color}`}>
+                    <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold text-white bg-gradient-to-r ${item.color}`}>
                       {item.year}
                     </span>
                   </div>
-                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{item.title}</h3>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">{item.description}</p>
+                  <h3 className="text-sm font-bold text-gray-900 dark:text-white mb-1">{item.title}</h3>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">{item.description}</p>
                 </div>
 
                 <div className="hidden md:block w-1/2" />
@@ -148,26 +148,26 @@ export default function FutureTimeline() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.8 }}
-          className="mt-16 glass-card p-8 md:p-12 text-center max-w-4xl mx-auto"
-        >
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {[
-              { label: "AI + CRISPR Integration", desc: "Generative design of optimized editors" },
-              { label: "Personalized Medicine", desc: "Custom therapies for rare diseases" },
-              { label: "Advanced Gene Therapies", desc: "Multi-gene editing platforms" },
-              { label: "Global Accessibility", desc: "Decentralized affordable manufacturing" },
-            ].map((item, i) => (
-              <div key={i}>
-                <div className="w-12 h-12 mx-auto mb-3 rounded-full bg-gradient-to-br from-crispr-400 to-aqua-400 p-3 text-white">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
+          className="mt-8 glass-card p-6 md:p-8 text-center max-w-4xl mx-auto"
+          >
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {[
+                { label: "AI + CRISPR Integration", desc: "Generative design of optimized editors" },
+                { label: "Personalized Medicine", desc: "Custom therapies for rare diseases" },
+                { label: "Advanced Gene Therapies", desc: "Multi-gene editing platforms" },
+                { label: "Global Accessibility", desc: "Decentralized affordable manufacturing" },
+              ].map((item, i) => (
+                <div key={i}>
+                  <div className="w-10 h-10 mx-auto mb-2 rounded-full bg-gradient-to-br from-crispr-400 to-aqua-400 p-2.5 text-white">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                  <h4 className="font-semibold text-gray-900 dark:text-white text-xs">{item.label}</h4>
+                  <p className="text-[10px] text-gray-400 mt-0.5">{item.desc}</p>
                 </div>
-                <h4 className="font-semibold text-gray-900 dark:text-white text-sm">{item.label}</h4>
-                <p className="text-xs text-gray-400 mt-1">{item.desc}</p>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
         </motion.div>
       </div>
     </section>

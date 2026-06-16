@@ -70,15 +70,15 @@ export default function Contact() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <span className="inline-block px-4 py-2 rounded-full glass text-sm font-medium text-crispr-600 dark:text-crispr-400 mb-4">
-            Get in Touch
-          </span>
-          <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            Contact & <span className="gradient-text">Collaboration</span>
-          </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          className="text-center mb-8"
+          >
+            <span className="inline-block px-3 py-1.5 rounded-full glass text-xs font-medium text-crispr-600 dark:text-crispr-400 mb-3">
+              Get in Touch
+            </span>
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-3">
+              Contact & <span className="gradient-text">Collaboration</span>
+            </h2>
+            <p className="text-base text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             Partner with us to advance CRISPR optimization research and bring gene editing therapies to patients worldwide.
           </p>
         </motion.div>
@@ -128,7 +128,7 @@ export default function Contact() {
                 <textarea name="message" rows={4} placeholder="Your message..." required
                   className="w-full px-4 py-3 rounded-xl glass text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-aqua-400/50 resize-none" />
                 <button type="submit" disabled={submitting}
-                  className="w-full py-4 rounded-2xl bg-gradient-to-r from-crispr-500 to-aqua-500 text-white font-semibold shadow-lg shadow-crispr-500/25 hover:shadow-xl hover:shadow-crispr-500/30 hover:scale-[1.02] transition-all duration-300 disabled:opacity-50">
+                  className="w-full py-4 rounded-2xl bg-gradient-to-r from-crispr-500 to-aqua-500 text-white font-semibold shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300 disabled:opacity-50">
                   {submitting ? "Sending..." : "Send Message"}
                 </button>
               </form>
@@ -180,7 +180,7 @@ export default function Contact() {
                   placeholder="Your email" required
                   className="flex-1 px-4 py-3 rounded-xl glass text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-aqua-400/50" />
                 <button type="submit"
-                  className="px-6 py-3 rounded-xl bg-gradient-to-r from-crispr-500 to-aqua-500 text-white font-medium shadow-lg hover:shadow-xl transition-all">
+                  className="px-6 py-3 rounded-xl bg-gradient-to-r from-crispr-500 to-aqua-500 text-white font-medium shadow-md hover:shadow-lg transition-all">
                   Subscribe
                 </button>
               </form>
@@ -193,14 +193,14 @@ export default function Contact() {
                   <svg className="w-5 h-5 text-aqua-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
-                  <span>contact@crispr-labs.com</span>
+                  <span>samairaraina140108@gmail.com</span>
                 </div>
                 <div className="flex items-center gap-3 text-gray-500 dark:text-gray-400">
                   <svg className="w-5 h-5 text-aqua-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
-                  <span>Cambridge, MA · San Francisco, CA · London, UK</span>
+                  <span>Shimla , Himachal Pradesh , India </span>
                 </div>
                 <div className="flex items-center gap-3 text-gray-500 dark:text-gray-400">
                   <svg className="w-5 h-5 text-aqua-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">

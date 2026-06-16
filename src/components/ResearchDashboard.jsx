@@ -165,15 +165,15 @@ export default function ResearchDashboard() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <span className="inline-block px-4 py-2 rounded-full glass text-sm font-medium text-aqua-600 dark:text-aqua-400 mb-4">
-            Research Dashboard
-          </span>
-          <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            Performance <span className="gradient-text">Metrics</span>
-          </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          className="text-center mb-8"
+          >
+            <span className="inline-block px-3 py-1.5 rounded-full glass text-xs font-medium text-aqua-600 dark:text-aqua-400 mb-3">
+              Research Dashboard
+            </span>
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-3">
+              Performance <span className="gradient-text">Metrics</span>
+            </h2>
+            <p className="text-base text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             Track key performance indicators across our CRISPR optimization technologies in real time.
           </p>
         </motion.div>

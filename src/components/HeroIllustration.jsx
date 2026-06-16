@@ -14,14 +14,10 @@ export default function HeroIllustration() {
           <stop offset="0%" stopColor="#facc15" stopOpacity="0.2" />
           <stop offset="100%" stopColor="#4ade80" stopOpacity="0.2" />
         </linearGradient>
-        <filter id="glow">
-          <feGaussianBlur stdDeviation="3" result="blur" />
-          <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
-        </filter>
       </defs>
 
       {/* Double helix */}
-      <g filter="url(#glow)">
+      <g>
         {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((i) => {
           const y = 40 + i * 32;
           const phase = i * 0.5;

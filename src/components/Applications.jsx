@@ -101,39 +101,39 @@ export default function Applications() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <span className="inline-block px-4 py-2 rounded-full glass text-sm font-medium text-crispr-600 dark:text-crispr-400 mb-4">
-            Real-World Impact
-          </span>
-          <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            Applications Across <span className="gradient-text">Industries</span>
-          </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            CRISPR optimization is transforming multiple sectors with measurable results and groundbreaking achievements.
-          </p>
-        </motion.div>
+          className="text-center mb-8"
+          >
+            <span className="inline-block px-3 py-1.5 rounded-full glass text-xs font-medium text-crispr-600 dark:text-crispr-400 mb-3">
+              Real-World Impact
+            </span>
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-3">
+              Applications Across <span className="gradient-text">Industries</span>
+            </h2>
+            <p className="text-base text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+              CRISPR optimization is transforming multiple sectors with measurable results and groundbreaking achievements.
+            </p>
+          </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {applications.map((app, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="glass-card p-6 group"
-            >
-              <div className="flex items-center gap-4 mb-4">
-                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${app.color} p-2 text-white group-hover:scale-110 transition-transform flex-shrink-0`}>
-                  <ApplicationIllustration type={app.type} />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {applications.map((app, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                className="glass-card p-4 group"
+              >
+                <div className="flex items-center gap-3 mb-3">
+                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${app.color} p-2 text-white group-hover:scale-110 transition-transform flex-shrink-0`}>
+                    <ApplicationIllustration type={app.type} />
+                  </div>
+                  <div>
+                    <h3 className="text-base font-semibold text-gray-900 dark:text-white">{app.title}</h3>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{app.title}</h3>
-                </div>
-              </div>
-              <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-4">{app.description}</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed mb-3">{app.description}</p>
 
-              <div className="flex gap-4 mb-4">
+                <div className="flex gap-3 mb-3">
                 {app.stats.map((stat, j) => (
                   <div key={j} className="bg-gray-50 dark:bg-gray-800/50 rounded-xl px-3 py-2 text-center flex-1">
                     <div className="text-lg font-bold gradient-text">{stat.value}</div>

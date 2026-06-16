@@ -1,96 +1,137 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
+import TechnologiesModal from "./TechnologiesModal";
 
 const technologies = [
   {
     title: "High-Fidelity Cas Variants",
-    tagline: "Enhanced precision through evolved enzymes",
-    description: "Engineered variants of Cas9, such as SpCas9-HF1 and eSpCas9, incorporate mutations that reduce non-specific DNA interactions, dramatically improving targeting accuracy while maintaining on-target efficiency.",
+    tagline: "Wild-type Cas9 cuts at too many off-target sites",
+    description: "Standard Cas9 tolerates mismatches between the guide RNA and DNA, creating double-strand breaks at partially homologous sequences across the genome — a major barrier to therapeutic use. Engineered variants remodel the Cas9-DNA interface to destabilize binding at mismatched sites while preserving on-target activity. The approach was validated when SpCas9-HF1, developed through rational mutagenesis of residues that contact DNA, abolished off-target cleavage at every tested site while maintaining full on-target activity in multiple human cell lines.",
     icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="9" strokeWidth="1.5" opacity="0.25" />
+        <line x1="5" y1="5" x2="19" y2="19" strokeWidth="1.5" opacity="0.3" />
+        <line x1="19" y1="5" x2="5" y2="19" strokeWidth="1.5" opacity="0.3" />
+        <path d="M12 4L12 8M12 16L12 20M4 12L8 12M16 12L20 12" strokeWidth="1.8" />
+        <circle cx="12" cy="12" r="3" strokeWidth="1.5" />
+        <circle cx="12" cy="12" r="1.5" fill="currentColor" opacity="0.4" />
       </svg>
     ),
     color: "from-crispr-400 to-emerald-600",
     stats: [
-      { label: "Off-target reduction", value: "99%" },
-      { label: "On-target efficiency", value: "95%" },
+      { label: "Key advance", value: "Rational redesign" },
+      { label: "Wild-type issue", value: "Mismatch tolerance" },
     ],
   },
   {
     title: "Base Editing",
-    tagline: "Precise single-letter DNA changes without double-strand breaks",
-    description: "Base editors fuse a catalytically impaired Cas9 with a deaminase enzyme, enabling direct conversion of one DNA base pair to another without creating double-strand breaks, reducing risk of indels.",
+    tagline: "Double-strand breaks trigger indels and rearrangements",
+    description: "CRISPR-Cas9 relies on generating double-strand breaks, which the cell repairs through error-prone pathways — introducing uncontrolled insertions and deletions alongside the intended edit. Base editors decouple editing from double-strand breaks by fusing a deaminase enzyme to a catalytically impaired Cas9 that nicks only one strand. This directly converts one DNA base to another (C→T or A→G) within a small editing window. David Liu's lab first demonstrated cytidine base editing in 2016, achieving efficient C→T conversion in human cells with minimal indels — a fundamentally new paradigm for precision genome editing.",
     icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4" />
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
+        <line x1="6" y1="6" x2="6" y2="18" strokeWidth="1.8" />
+        <line x1="18" y1="6" x2="18" y2="18" strokeWidth="1.8" />
+        <line x1="6" y1="10" x2="18" y2="10" strokeWidth="1.2" opacity="0.3" />
+        <line x1="6" y1="14" x2="18" y2="14" strokeWidth="1.2" opacity="0.3" />
+        <rect x="9" y="8" width="6" height="3" rx="0.5" strokeWidth="1.2" opacity="0.4" />
+        <circle cx="12" cy="12" r="1.5" fill="currentColor" opacity="0.3" />
+        <path d="M9 16L12 19L15 16" strokeWidth="1.5" />
+        <path d="M9 13L12 10L15 13" strokeWidth="1" opacity="0.4" />
       </svg>
     ),
     color: "from-aqua-400 to-cyan-600",
     stats: [
-      { label: "Base conversion", value: "C·G→T·A" },
-      { label: "Efficiency", value: ">80%" },
+      { label: "Conversion types", value: "C→T / A→G" },
+      { label: "Key benefit", value: "No DSB required" },
     ],
   },
   {
     title: "Prime Editing",
-    tagline: "Search-and-replace genome editing",
-    description: "Prime editing uses a Cas9 nickase fused to a reverse transcriptase, guided by a prime editing guide RNA (pegRNA) to directly write new genetic information into the target site with minimal byproducts.",
+    tagline: "Base editors can only do transition mutations",
+    description: "Base editors are chemically limited — they can perform only four of the twelve possible base conversions and cannot make insertions or deletions. Prime editing uses a Cas9 nickase fused to a reverse transcriptase, guided by a prime editing guide RNA (pegRNA) that both specifies the target site and encodes the desired edit on its 3' extension. The RT copies the edit template directly into the genome, enabling any base-to-base conversion, plus small insertions and deletions. When published in Nature in 2019, prime editing corrected disease-associated mutations in human cells with minimal byproducts, achieving the versatility of HDR without requiring a donor template.",
     icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M4 8C4 8 10 4 12 12" strokeWidth="1.5" />
+        <path d="M20 16C20 16 14 20 12 12" strokeWidth="1.5" />
+        <circle cx="4" cy="8" r="1.5" strokeWidth="1.3" />
+        <circle cx="20" cy="16" r="1.5" strokeWidth="1.3" />
+        <circle cx="12" cy="12" r="1.5" fill="currentColor" opacity="0.5" />
+        <line x1="12" y1="8" x2="12" y2="6" strokeWidth="1.2" opacity="0.4" />
+        <line x1="12" y1="16" x2="12" y2="18" strokeWidth="1.2" opacity="0.4" />
+        <line x1="8" y1="12" x2="6" y2="12" strokeWidth="1.2" opacity="0.4" />
+        <line x1="16" y1="12" x2="18" y2="12" strokeWidth="1.2" opacity="0.4" />
       </svg>
     ),
     color: "from-yellow-300 to-amber-500",
     stats: [
-      { label: "Edit types possible", value: "All transitions" },
-      { label: "Indel rate", value: "<1%" },
+      { label: "Edit scope", value: "All 12 conversions" },
+      { label: "Advantage", value: "No donor template" },
     ],
   },
   {
     title: "AI-Assisted Guide RNA Design",
-    tagline: "Machine learning for optimal targeting",
-    description: "Deep learning models predict on-target efficiency and off-target potential of guide RNAs, ranking millions of candidate guides to identify the most specific and effective sequences for each target.",
+    tagline: "Most guide RNAs fail or cut off-target",
+    description: "Traditional rule-based guide design misses context-dependent sequence features that determine real-world editing outcomes, and fails to predict off-target effects at genomically similar sites. Deep learning models trained on large-scale editing outcome datasets learn the sequence determinants of on-target efficiency and off-target activity across mismatches, bulges, and DNA accessibility. These models guide millions of candidate sequences per target and rank them by predicted specificity. DeepCRISPR and related models have become standard tools in the field, reducing the experimental screening burden and enabling genome-wide tiling studies that were previously impractical.",
     icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M6 4C6 4 11 6 13 12C15 18 20 20 20 20" strokeWidth="1.5" />
+        <path d="M18 4C18 4 13 6 11 12C9 18 4 20 4 20" strokeWidth="1.5" opacity="0.5" />
+        <circle cx="13" cy="12" r="1.5" fill="currentColor" opacity="0.3" />
+        <circle cx="11" cy="12" r="1.5" fill="currentColor" opacity="0.3" />
+        <circle cx="4" cy="20" r="1.2" strokeWidth="1.2" />
+        <circle cx="20" cy="20" r="1.2" strokeWidth="1.2" />
+        <circle cx="6" cy="4" r="1.2" strokeWidth="1.2" />
+        <circle cx="18" cy="4" r="1.2" strokeWidth="1.2" />
       </svg>
     ),
     color: "from-purple-400 to-violet-600",
     stats: [
-      { label: "Accuracy improvement", value: "3.5x" },
-      { label: "Candidates screened", value: "10M+" },
+      { label: "Approach", value: "Deep learning ranking" },
+      { label: "Scale", value: "Millions per target" },
     ],
   },
   {
     title: "Advanced Delivery Systems",
-    tagline: "Getting CRISPR to the right cells, safely",
-    description: "Lipid nanoparticles (LNPs), adeno-associated viruses (AAVs), and virus-like particles (VLPs) are engineered to deliver CRISPR components efficiently to specific tissues with reduced immunogenicity.",
+    tagline: "Naked CRISPR components cannot enter cells on their own",
+    description: "CRISPR components (Cas9 mRNA, guide RNA, or ribonucleoproteins) are large, charged molecules that cannot cross cell membranes without a carrier. For in vivo applications, the delivery vehicle must protect its cargo from degradation, target the right tissue, enter cells, and release its payload in the cytoplasm or nucleus. Three complementary platforms have emerged: lipid nanoparticles encapsulate mRNA for transient Cas9 expression in the liver; adeno-associated viruses package gRNA and donor templates with serotypes that preferentially transduce specific tissues; and virus-like particles deliver pre-formed RNP complexes with the efficiency of viral entry but without viral genome integration. Each platform has reached clinical trials.",
     icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0A2.701 2.701 0 003 15.546M21 15.546V8.454c0-1.5-1.5-2.5-3-2.5H6c-1.5 0-3 1-3 2.5v7.092" />
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="7" strokeWidth="1.5" />
+        <circle cx="12" cy="12" r="3.5" strokeWidth="1.2" opacity="0.5" />
+        <circle cx="12" cy="12" r="1.5" fill="currentColor" opacity="0.4" />
+        <path d="M5 5L8 8M19 19L16 16M19 5L16 8M5 19L8 16" strokeWidth="1.2" opacity="0.4" />
+        <path d="M12 3L12 5M12 19L12 21M3 12L5 12M19 12L21 12" strokeWidth="1" opacity="0.3" />
       </svg>
     ),
     color: "from-rose-400 to-pink-600",
     stats: [
-      { label: "Delivery efficiency", value: "90%" },
-      { label: "Targets", value: "Liver, Lungs, Eyes" },
+      { label: "Platforms", value: "LNP / AAV / VLP" },
+      { label: "Cargo types", value: "mRNA, RNP, gRNA" },
     ],
   },
   {
     title: "Epigenetic Editing",
-    tagline: "Modifying gene expression without altering DNA sequence",
-    description: "CRISPR-based epigenetic editors fuse dCas9 with epigenetic modifiers to activate or silence gene expression by modifying DNA methylation and histone marks, offering reversible gene regulation.",
+    tagline: "Permanent DNA changes carry irreversible risks",
+    description: "Making permanent changes to the genome is inappropriate for many clinical indications where transient gene modulation suffices — metabolic disorders, inflammation, or pain. It also carries risks of permanent off-target alterations. Epigenetic editors repurpose dCas9 as a delivery platform for chromatin-modifying enzymes — turning genes on (via TET1 demethylation or p300 acetylation) or off (via KRAB-mediated H3K9me3 deposition) without altering the underlying DNA sequence. These modifications are reversible and titratable, offering safer alternatives for non-genetic diseases. In preclinical models, dCas9-p300 reactivation of silenced UBE3A in Angelman syndrome neurons restored protein function — a milestone for reversible epigenetic therapies.",
     icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M4 6H20" strokeWidth="1.8" />
+        <path d="M4 12H20" strokeWidth="1.8" opacity="0.3" />
+        <path d="M4 18H20" strokeWidth="1.8" opacity="0.15" />
+        <circle cx="7" cy="6" r="1.5" fill="currentColor" opacity="0.3" />
+        <circle cx="14" cy="6" r="1.5" fill="currentColor" opacity="0.3" />
+        <circle cx="17" cy="12" r="1.5" fill="currentColor" opacity="0.3" />
+        <circle cx="10" cy="18" r="1.5" fill="currentColor" opacity="0.3" />
+        <path d="M9 6L9 4M16 6L16 4" strokeWidth="1.2" opacity="0.5" />
+        <path d="M17 12L19 12" strokeWidth="1.2" opacity="0.5" />
+        <path d="M10 18L8 18" strokeWidth="1.2" opacity="0.5" />
       </svg>
     ),
     color: "from-teal-400 to-teal-600",
     stats: [
-      { label: "Gene regulation", value: "Reversible" },
-      { label: "Applications", value: "Therapeutics" },
+      { label: "Mechanism", value: "Chromatin modification" },
+      { label: "Key property", value: "Reversible" },
     ],
   },
 ];
@@ -99,6 +140,7 @@ export default function OptimizationTech() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const [expanded, setExpanded] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
 
   return (
     <section id="technologies" className="section-padding bg-gray-50/50 dark:bg-gray-900/50" ref={ref}>
@@ -107,62 +149,79 @@ export default function OptimizationTech() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <span className="inline-block px-4 py-2 rounded-full glass text-sm font-medium text-aqua-600 dark:text-aqua-400 mb-4">
-            Our Technologies
-          </span>
-          <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            CRISPR Optimization <span className="gradient-text">Technologies</span>
-          </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            We leverage cutting-edge innovations to overcome the limitations of standard CRISPR,
-            making gene editing safer, more precise, and more effective.
-          </p>
-        </motion.div>
+          className="text-center mb-8"
+          >
+            <span className="inline-block px-3 py-1.5 rounded-full glass text-xs font-medium text-aqua-600 dark:text-aqua-400 mb-3">
+              Our Technologies
+            </span>
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-3">
+              CRISPR Optimization <span className="gradient-text">Technologies</span>
+            </h2>
+            <p className="text-base text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+              We leverage cutting-edge innovations to overcome the limitations of standard CRISPR,
+              making gene editing safer, more precise, and more effective.
+            </p>
+          </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {technologies.map((tech, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-              onClick={() => setExpanded(expanded === i ? null : i)}
-              className={`glass-card p-6 cursor-pointer group ${
-                expanded === i ? "ring-2 ring-aqua-400/50" : ""
-              }`}
-            >
-              <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${tech.color} p-3.5 text-white mb-5 group-hover:scale-110 transition-transform`}>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {technologies.map((tech, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                onClick={() => setExpanded(expanded === i ? null : i)}
+                className="glass-card p-4 cursor-pointer group"
+              >
+                <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${tech.color} p-3 text-white mb-3 group-hover:scale-110 transition-transform`}>
                 {tech.icon}
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-1">{tech.title}</h3>
-              <p className="text-sm text-aqua-500 dark:text-aqua-400 mb-3">{tech.tagline}</p>
+              <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-0.5">{tech.title}</h3>
+              <p className="text-xs text-aqua-500 dark:text-aqua-400 mb-2">{tech.tagline}</p>
               <motion.p
                 initial={false}
                 animate={{ height: expanded === i ? "auto" : "0px", opacity: expanded === i ? 1 : 0 }}
-                className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed overflow-hidden"
+                className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed overflow-hidden"
               >
                 {expanded === i && tech.description}
               </motion.p>
               {expanded !== i && (
-                <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed line-clamp-2">{tech.description}</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed line-clamp-2">{tech.description}</p>
               )}
-              <div className="flex gap-4 mt-4 pt-4 border-t border-gray-100 dark:border-gray-800">
+              <div className="flex gap-3 mt-3 pt-3 border-t border-gray-100 dark:border-gray-800">
                 {tech.stats.map((stat, j) => (
                   <div key={j}>
-                    <div className="text-sm font-bold gradient-text">{stat.value}</div>
-                    <div className="text-xs text-gray-400">{stat.label}</div>
+                    <div className="text-xs font-bold gradient-text">{stat.value}</div>
+                    <div className="text-[10px] text-gray-400">{stat.label}</div>
                   </div>
                 ))}
               </div>
-              <div className="mt-3 text-xs text-aqua-500 font-medium">
+              <div className="mt-2 text-[10px] text-aqua-500 font-medium">
                 {expanded === i ? "Tap to collapse" : "Tap for details"}
               </div>
             </motion.div>
           ))}
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="text-center mt-8"
+          >
+            <button
+              onClick={() => setModalOpen(true)}
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-crispr-500 to-aqua-500 text-white font-semibold text-sm shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300"
+          >
+            View All Technologies
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </button>
+        </motion.div>
       </div>
+
+      <TechnologiesModal open={modalOpen} onClose={() => setModalOpen(false)} />
     </section>
   );
 }

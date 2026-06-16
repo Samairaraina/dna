@@ -17,7 +17,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <span className="inline-block px-4 py-2 rounded-full glass text-sm font-medium text-aqua-600 dark:text-aqua-400 mb-6">
+              <span className="inline-block px-3 py-1.5 rounded-full glass text-xs font-medium text-aqua-600 dark:text-aqua-400 mb-4">
                 Pioneering the Future of Gene Editing
               </span>
             </motion.div>
@@ -26,7 +26,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6"
+              className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4"
             >
               <span className="text-gray-900 dark:text-white">Revolutionizing Genetic Engineering with </span>
               <span className="gradient-text">CRISPR Optimization</span>
@@ -36,7 +36,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-10 leading-relaxed"
+              className="text-base md:text-lg text-gray-600 dark:text-gray-400 mb-6 leading-relaxed"
             >
               Discover how CRISPR-Cas9 and next-generation optimization technologies are transforming medicine,
               agriculture, and biotechnology — unlocking precise, safe, and accessible gene editing for all.
@@ -50,14 +50,14 @@ export default function Hero() {
             >
               <a
                 href="#technologies"
-                className="group relative px-8 py-4 rounded-2xl bg-gradient-to-r from-crispr-500 to-aqua-500 text-white font-semibold text-lg shadow-lg shadow-crispr-500/25 hover:shadow-xl hover:shadow-crispr-500/30 hover:scale-105 transition-all duration-300"
+                className="group relative px-6 py-3 rounded-xl bg-gradient-to-r from-crispr-500 to-aqua-500 text-white font-semibold text-base shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
               >
                 Explore Technology
-                <span className="absolute inset-0 rounded-2xl bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <span className="absolute inset-0 rounded-xl bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
               </a>
               <a
                 href="#applications"
-                className="group relative px-8 py-4 rounded-2xl glass text-gray-700 dark:text-gray-200 font-semibold text-lg border border-gray-200 dark:border-gray-700 hover:border-aqua-400 dark:hover:border-aqua-500 hover:shadow-lg hover:scale-105 transition-all duration-300"
+                className="group relative px-6 py-3 rounded-xl glass text-gray-700 dark:text-gray-200 font-semibold text-base border border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 hover:shadow-lg hover:scale-105 transition-all duration-300"
               >
                 Research Applications
               </a>
@@ -67,7 +67,7 @@ export default function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0.6 }}
-              className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4"
+              className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3"
             >
               {[
                 { label: "Editing Accuracy", value: "99.7%" },
@@ -75,9 +75,9 @@ export default function Hero() {
                 { label: "Research Partners", value: "350+" },
                 { label: "Clinical Trials", value: "180+" },
               ].map((stat, i) => (
-                <div key={i} className="glass-card p-4 text-center">
-                  <div className="text-2xl md:text-3xl font-bold gradient-text">{stat.value}</div>
-                  <div className="text-xs md:text-sm text-gray-500 dark:text-gray-400 mt-1">{stat.label}</div>
+                <div key={i} className="glass-card p-3 text-center">
+                  <div className="text-lg md:text-xl font-bold gradient-text">{stat.value}</div>
+                  <div className="text-xs text-gray-500 dark:text-gray-400">{stat.label}</div>
                 </div>
               ))}
             </motion.div>
